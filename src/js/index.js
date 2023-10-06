@@ -24,18 +24,29 @@ refs.form.addEventListener('submit', onFormSubmit);
 refs.loadBtn.addEventListener('click', onLoadBtnClick);
 
 
-
-async function onFormSubmit(e) {
+ function onFormSubmit(e) {
     e.preventDefault();
+   
     page = 1;
+    refs.divImg.innerHTML = '';
     searchQuery = refs.input.value.trim();
 
-    if (!searchQuery.trim()) {
+   if (!searchQuery.trim()) {
+      refs.loadBtn.classList.add('is-hidden');
      return   Notiflix.Notify.failure(
       'Sorry, there are no images matching your search query. Please try again.'
         );
  }
-    try {
+
+    // if(searchQuery === ''){return refs.loadBtn.classList.add('is-hidden');}
+    
+    renderPage();
+    e.target.reset();
+};
+ 
+async function renderPage() {
+  
+  try {
         const response = await getImages(searchQuery, page);
         Notiflix.Notify.success(`Hooray! We found ${response.totalHits} images.`);
         createMarkup(response.hits);
@@ -54,10 +65,10 @@ async function onFormSubmit(e) {
     } catch (error) {
         Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!')
     }
+ };
 
-    e.target.reset();
-};
- 
+
+
 function createMarkup(img) {
 
     const markup = img.map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => {
@@ -86,7 +97,7 @@ function createMarkup(img) {
 };
  
 
-function onLoadBtnClick(e) { 
+function onLoadBtnClick() { 
     page += 1;
-    onFormSubmit(e);
+    renderPage();
 };
