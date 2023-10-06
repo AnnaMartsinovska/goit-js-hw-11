@@ -9,15 +9,18 @@
   <body>
     <form class="search-form" id="search-form">
       <input
+        class="search-input"
         type="text"
         name="searchQuery"
         autocomplete="off"
         placeholder="Search images..."
       />
-      <button type="submit">Search</button>
+      <button class="search-btn" type="submit">Search</button>
     </form>
-    <div class="gallery"></div>
-    <button type="button" class="load-more is-hidden">Load more</button>
+    <div class="gallery container"></div>
+    <button type="button" class="load-more is-hidden btn-place">
+      Load more
+    </button>
     <script type="module" src="./js/index.js"></script>
   </body>
 </html>

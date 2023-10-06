@@ -14,21 +14,59 @@
 .gallery {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
   row-gap: 15px;
   column-gap: 15px;
   margin-bottom: 30px;
 }
 
-img {
-  display: block;
-  max-width: 100%;
+.search-form {
+  display: flex;
+  justify-content: center;
+  width: 600px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+
+.search-input {
+  height: 40px;
+  flex-grow: 1;
+  font-size: 18px;
+  padding-left: 15px;
+  border: 1px solid #303030;
 }
 
 .info {
   text-align: center;
 }
 
-.photo-card {
+.info-item {
   list-style: none;
   text-decoration: none;
+}
+
+.container {
+  width: 1158px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.search-btn,
+.load-more {
+  font-size: 14px;
+  padding: 10px 20px;
+  background-color: pink;
+  color: black;
+  border: 1 px solid;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background-color 250ms linear;
+}
+
+.btn-place {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

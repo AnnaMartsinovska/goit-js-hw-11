@@ -55,7 +55,7 @@ async function onFormSubmit(e) {
         Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!')
     }
 
-    searchQuery.reset();
+    e.target.reset();
 };
  
 function createMarkup(img) {
@@ -63,7 +63,7 @@ function createMarkup(img) {
     const markup = img.map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => {
       return  `<div class="photo-card">
     <a class="gallery_link" href="${largeImageURL}">
-    <img src="${webformatURL}" alt="${tags}" width = "500" height = "350" loading="lazy" />
+    <img src="${webformatURL}" alt="${tags}" width = "300" height = "200" loading="lazy" />
     <div class="info">
     <p class="info-item">
       <b>Likes: ${likes}</b>
