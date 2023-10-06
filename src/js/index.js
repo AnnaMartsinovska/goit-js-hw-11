@@ -18,7 +18,7 @@ let simple = new SimpleLightbox('.gallery a', {
 
 let page = 1;
 let searchQuery = '';
-
+let isSubmit = true;
 
 refs.form.addEventListener('submit', onFormSubmit);
 refs.loadBtn.addEventListener('click', onLoadBtnClick);
@@ -26,6 +26,7 @@ refs.loadBtn.addEventListener('click', onLoadBtnClick);
 
  function onFormSubmit(e) {
     e.preventDefault();
+  
    
     page = 1;
     refs.divImg.innerHTML = '';
@@ -37,8 +38,6 @@ refs.loadBtn.addEventListener('click', onLoadBtnClick);
       'Sorry, there are no images matching your search query. Please try again.'
         );
  }
-
-    // if(searchQuery === ''){return refs.loadBtn.classList.add('is-hidden');}
     
     renderPage();
     e.target.reset();
@@ -47,20 +46,25 @@ refs.loadBtn.addEventListener('click', onLoadBtnClick);
 async function renderPage() {
   
   try {
-        const response = await getImages(searchQuery, page);
-        Notiflix.Notify.success(`Hooray! We found ${response.totalHits} images.`);
+    const response = await getImages(searchQuery, page);
+    
+    if (isSubmit) { Notiflix.Notify.success(`Hooray! We found ${response.totalHits} images.`);}
+        
         createMarkup(response.hits);
         simple.refresh();
 
-        if (response.hits.length < Per_page) return;
-        refs.loadBtn.classList.remove('is-hidden');
-
-        const lastPage = Math.ceil(response.totalHits / Per_page);
+       const lastPage = Math.ceil(response.totalHits / Per_page);
 
         if (lastPage === page) {
             Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.")
-            refs.loadBtn.classList.add('is-hidden');
+          refs.loadBtn.classList.add('is-hidden');
+          return;
         }
+
+      if (response.hits.length < Per_page) return;
+    refs.loadBtn.classList.remove('is-hidden');
+    
+    isSubmit = true;
 
     } catch (error) {
         Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!')
@@ -99,5 +103,6 @@ function createMarkup(img) {
 
 function onLoadBtnClick() { 
     page += 1;
-    renderPage();
+  renderPage();
+  isSubmit = false;
 };
