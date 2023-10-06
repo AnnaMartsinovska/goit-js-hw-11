@@ -509,7 +509,7 @@ ez.mergeConfig=eN,ez.AxiosHeaders=er,ez.formToJSON=t=>t8(K.isHTMLForm(t)?new For
 // so that it can keep same with es module or cjs
 let{Axios:eB,AxiosError:eD,CanceledError:eM,isCancel:eP,CancelToken:eW,VERSION:eX,all:eF,Cancel:ej,isAxiosError:eU,spread:eH,toFormData:eY,AxiosHeaders:e_,HttpStatusCode:eq,formToJSON:e$,getAdapter:eV,mergeConfig:eJ}=ez;async function eZ(t,e){let o=await ez.get("https://pixabay.com/api/",{params:{key:"39866612-e7964125725bbe7947c64adff",q:t,image_type:"photo",orientation:"horizontal",safesearch:!0,per_page:40,page:e}});return o.data}let eK={form:document.querySelector(".search-form"),input:document.querySelector('[name="searchQuery"]'),submitBtn:document.querySelector('[type="submit"]'),divImg:document.querySelector(".gallery"),loadBtn:document.querySelector(".load-more")},eQ=new/*@__PURE__*/(e(f))(".gallery a",{captionsData:"alt",captionDelay:250}),eG=1,e0="";async function e1(t){if(t.preventDefault(),eG=1,!(e0=eK.input.value.trim()).trim())return /*@__PURE__*/e(x).Notify.failure("Sorry, there are no images matching your search query. Please try again.");try{let t=await eZ(e0,eG);if(/*@__PURE__*/e(x).Notify.success(`Hooray! We found ${t.totalHits} images.`),function(t){let e=t.map(({webformatURL:t,largeImageURL:e,tags:o,likes:i,views:n,comments:a,downloads:r})=>`<div class="photo-card">
     <a class="gallery_link" href="${e}">
-    <img src="${t}" alt="${o}" width = "500" height = "350" loading="lazy" />
+    <img src="${t}" alt="${o}" width = "300" height = "200" loading="lazy" />
     <div class="info">
     <p class="info-item">
       <b>Likes: ${i}</b>
@@ -524,6 +524,6 @@ let{Axios:eB,AxiosError:eD,CanceledError:eM,isCancel:eP,CancelToken:eW,VERSION:e
       <b>Downloads: ${r}</b>
     </p>
     </div>
-    </div>`).join("");eK.divImg.insertAdjacentHTML("beforeend",e)}(t.hits),eQ.refresh(),t.hits.length<40)return;eK.loadBtn.classList.remove("is-hidden");let o=Math.ceil(t.totalHits/40);o===eG&&(/*@__PURE__*/e(x).Notify.failure("We're sorry, but you've reached the end of search results."),eK.loadBtn.classList.add("is-hidden"))}catch(t){/*@__PURE__*/e(x).Notify.failure("Oops! Something went wrong! Try reloading the page!")}e0.reset()}eK.form.addEventListener("submit",e1),eK.loadBtn.addEventListener("click",function(t){eG+=1,e1(t)})}();//# sourceMappingURL=index.c506ceec.js.map
+    </div>`).join("");eK.divImg.insertAdjacentHTML("beforeend",e)}(t.hits),eQ.refresh(),t.hits.length<40)return;eK.loadBtn.classList.remove("is-hidden");let o=Math.ceil(t.totalHits/40);o===eG&&(/*@__PURE__*/e(x).Notify.failure("We're sorry, but you've reached the end of search results."),eK.loadBtn.classList.add("is-hidden"))}catch(t){/*@__PURE__*/e(x).Notify.failure("Oops! Something went wrong! Try reloading the page!")}t.target.reset()}eK.form.addEventListener("submit",e1),eK.loadBtn.addEventListener("click",function(t){eG+=1,e1(t)})}();//# sourceMappingURL=index.8bad3f87.js.map
 
-//# sourceMappingURL=index.c506ceec.js.map
+//# sourceMappingURL=index.8bad3f87.js.map
